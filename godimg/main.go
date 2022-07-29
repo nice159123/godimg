@@ -1,6 +1,7 @@
-package main
+package godimg
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -11,6 +12,24 @@ import (
 
 func main() {
 	fmt.Print("Hello World")
+}
+
+func getBodyString(url string) (*string, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	if resp.StatusCode != http.StatusOK {
+		return nil, errors.New("Received non 200 response code")
+	}
+	defer resp.Body.Close()
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		//
+		return nil, err
+	}
+	bodyString := string(bodyBytes)
+	return &bodyString, nil
 }
 
 func downloadFile(url string, fileName string, path string) error {
