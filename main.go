@@ -10,5 +10,5 @@ const (
 
 func main() {
 	fmt.Print("Hello World!")
-
+	// godimg.getBodyString()
 }

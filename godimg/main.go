@@ -10,7 +10,7 @@ import (
 	"github.com/schollz/progressbar/v3"
 )
 
-func main() {
+func godimg() {
 	fmt.Print("Hello World")
 }
 
@@ -32,7 +32,7 @@ func getBodyString(url string) (*string, error) {
 	return &bodyString, nil
 }
 
-func downloadFile(url string, fileName string, path string) error {
+func getFileDownload(url string, fileName string, path string) error {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
